@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Deploy to azure App services
-        uses: actions/webapps-deploy
+        uses: actions/webapps-deploy@v2
         with:
           app-name: patisserie-app
           publish-profile: ${{secrets.AZURE_PUBLISH_PROFILE}}
