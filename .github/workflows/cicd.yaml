@@ -16,10 +16,8 @@ jobs:
         with:
           node-version: '18.x'
       
-      - name: CD to backend directory
-        run: cd patisserie-back
-
       - name: Install dependencies
+        working-directory: ./patisserie-back
         run: npm install
 
       - name: Deploy to azure App services
