@@ -1,6 +1,6 @@
 <div class="card row" *ngFor="let recepie of recepies" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">{{recepie['name']}}</h5>
-      <a href="#" class="btn btn-primary">למתכון</a>
+      <a routerLink="/recepie/{{recepie['_id']}}" class="btn btn-primary">למתכון</a>
     </div>
   </div>
