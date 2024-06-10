@@ -31,7 +31,7 @@ constructor(private http: HttpClient) {}
 
   addIngredient() {
     this.recepieIngredients.push(
-      {ingredientName: this.ingredientNameToAdd, ingredientAmount: this.ingredientAmountToAdd}
+      {name: this.ingredientNameToAdd, amount: this.ingredientAmountToAdd}
     );
   }
 

@@ -13,7 +13,8 @@
                     <div class="col-4">
                         <input type="number" class="form-control" name="ingredientAmountToAdd" [(ngModel)]="ingredientAmountToAdd">
                     </div>
-                    <div class="col-6">
+                    <p class="col-1">גרם</p>
+                    <div class="col-5">
                         <input type="text" class="form-control" name="ingredientNameToAdd" [(ngModel)]="ingredientNameToAdd">
                     </div>
                     <div class="col-2">
@@ -23,7 +24,7 @@
                 <ul>
                     <li class="row my-1" *ngFor="let ingredient of recepieIngredients; index as i">
                         <div class="col-8">
-                            {{ingredient.ingredientAmount}} גרם {{ingredient.ingredientName}}
+                            {{ingredient.amount}} גרם {{ingredient.name}}
                         </div>
                         <div class="col-4">
                             <button class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
