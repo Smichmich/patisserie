@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const compress = require('compression');
 const methodOverride = require('method-override');
 const cors = require('cors');
+const path = require('path');
 const helmet = require('helmet');
 const routes = require('../api/routes/v1');
 const { logs } = require('./vars');
@@ -34,6 +35,9 @@ app.use(helmet());
 
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors());
+
+// Serve public dir static files
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // mount api v1 routes
 app.use('/v1', routes);
