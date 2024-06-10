@@ -14,7 +14,7 @@ export class CreateRecepieComponent {
 
 constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:3000';
+  apiUrl: string = 'http://localhost:8080';
 
   recepieName: String = '';
   recepieInstructions: String[] = [];

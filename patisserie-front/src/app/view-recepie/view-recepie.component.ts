@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ViewRecepieComponent {
 
-  backendUrl = 'http://localhost:3000/v1/recepies/'
+  backendUrl = 'http://localhost:8080/v1/recepies/'
   recepie: Recepie | null = null;
   recepieBackup: Recepie | null = null;
   factor: number = 1;
