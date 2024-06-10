@@ -32,7 +32,7 @@ exports.GetAllRecepies = async (req, res, next) => {
 */
 exports.GetRecepieByID = async (req, res, next) => {
   logger.info('Requesting recepie by id');
-  const { ID } = req.body;
+  const { ID } = req.params;
   logger.info(`Requested recepie id is ${ID}`);
 
   const recepie = await Recepie.find({ _id: ID });
