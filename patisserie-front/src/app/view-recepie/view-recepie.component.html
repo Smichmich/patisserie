@@ -1,1 +1,27 @@
-<p>view-recepie works!</p>
+<div *ngIf="!recepie">
+טוען מתכון
+</div>
+<div *ngIf="recepie">
+    <div class="d-flex justify-content-center">
+        <h1>מתכון {{recepie.name}}</h1>
+    </div>
+    <h2 class="mx-3">מרכיבים:</h2>
+    <ul>
+        <li *ngFor="let ingredient of recepie.ingredients">{{ingredient.amount}} גרם {{ingredient.name}}</li>
+    </ul>
+
+    <h2 class="mx-3">הוראות הכנה:</h2>
+    <ol>
+        <li *ngFor="let instruction of recepie.instructions">{{instruction}}</li>
+    </ol>
+    <div class="d-flex justify-content-center mx-5">
+
+        <div class="input-group input-group-sm">
+            <button class="input-group-text btn btn-success" (click)="multipleIngredients()">
+                הכפל כמויות פי 
+            </button>
+            <input type="number" [(ngModel)]="factor" class="form-control">
+            <button class="btn btn-danger mx-5" (click)="resetRecepie()">אפס מתכון</button>
+        </div>
+    </div>
+</div>
