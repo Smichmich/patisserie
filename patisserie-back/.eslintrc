@@ -16,5 +16,6 @@
   },
   "extends": [
     "airbnb-base"
-  ]
+  ],
+  "ignorePatterns": ["src/public/*"] // <<< ignore all files in public folder
 }
