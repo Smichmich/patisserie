@@ -31,6 +31,8 @@ constructor(private http: HttpClient) {}
     this.recepieIngredients.push(
       {name: this.ingredientNameToAdd, amount: this.ingredientAmountToAdd}
     );
+    this.ingredientAmountToAdd = 0;
+    this.ingredientNameToAdd = '';
   }
 
   saveRecepie() {
@@ -41,7 +43,8 @@ constructor(private http: HttpClient) {}
         ingredients: this.recepieIngredients
       }
       this.http.post<any>('/v1/recepies/add', newRecepie).subscribe((res) => {
-        console.log(res);
+        alert('נוצר מתכון בהצלחה');
+        this.resetForm();
       })
     }
   }
@@ -52,5 +55,14 @@ constructor(private http: HttpClient) {}
 
   removeInstruction(index: number) {
     this.recepieInstructions.splice(index, 1);
+  }
+
+  resetForm() {
+    this.recepieName = '';
+    this.ingredientAmountToAdd = 0;
+    this.ingredientNameToAdd = '';
+    this.instructionToAdd = '';
+    this.recepieIngredients = [];
+    this.recepieInstructions = [];
   }
 }
