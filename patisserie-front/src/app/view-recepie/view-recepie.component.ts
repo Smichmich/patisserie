@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class ViewRecepieComponent {
 
-  backendUrl = 'http://localhost:8080/v1/recepies/'
   recepie: Recepie | null = null;
   recepieBackup: Recepie | null = null;
   factor: number = 1;
@@ -21,7 +20,7 @@ export class ViewRecepieComponent {
 
   ngOnInit() {
     const recepieID = this.activeRoute.snapshot.params['recepieID'];
-    this.http.get<any>(`${this.backendUrl}/${recepieID}`).subscribe(res => {
+    this.http.get<any>(`/v1/recepies/${recepieID}`).subscribe(res => {
        this.recepie = res[0];
        this.recepieBackup = JSON.parse(JSON.stringify(this.recepie))
     })

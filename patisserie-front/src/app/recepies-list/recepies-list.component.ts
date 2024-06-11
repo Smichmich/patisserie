@@ -12,12 +12,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './recepies-list.component.css'
 })
 export class RecepiesListComponent {
-  private backendUrl = 'http://localhost:8080/v1';
   public recepies!: [Recepie];
   constructor(private HttpClient: HttpClient) {}
 
   ngOnInit() {
-    this.HttpClient.get<{recepies: [Recepie]}>(`${this.backendUrl}/recepies`).subscribe((res) => {
+    this.HttpClient.get<{recepies: [Recepie]}>(`/v1/recepies`).subscribe((res) => {
       this.recepies = res.recepies;
     })
   }

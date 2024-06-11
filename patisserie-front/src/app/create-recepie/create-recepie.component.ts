@@ -14,8 +14,6 @@ export class CreateRecepieComponent {
 
 constructor(private http: HttpClient) {}
 
-  apiUrl: string = 'http://localhost:8080';
-
   recepieName: String = '';
   recepieInstructions: String[] = [];
   recepieIngredients: any[] = [];
@@ -42,7 +40,7 @@ constructor(private http: HttpClient) {}
         instructions: this.recepieInstructions,
         ingredients: this.recepieIngredients
       }
-      this.http.post<any>(`${this.apiUrl}/v1/recepies/add`, newRecepie).subscribe((res) => {
+      this.http.post<any>('/v1/recepies/add', newRecepie).subscribe((res) => {
         console.log(res);
       })
     }
