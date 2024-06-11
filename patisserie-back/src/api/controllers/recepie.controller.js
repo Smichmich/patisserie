@@ -27,7 +27,7 @@ exports.GetAllRecepies = async (req, res, next) => {
     res.status(200).json({ recepies });
   } catch (error) {
     logger.error(error);
-    res.status(500).json({ msg: 'Internal server error' });
+    res.status(500).json({ error });
   }
 };
 
