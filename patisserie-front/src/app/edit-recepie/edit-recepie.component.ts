@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Recepie } from '../../models/recepie.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class EditRecepieComponent {
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {  }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) {  }
   recepieToEdit: Recepie | null = null;
   ingredientAmountToAdd: number = 0;
   ingredientNameToAdd: string = '';
@@ -52,13 +52,13 @@ export class EditRecepieComponent {
 
   updateRecepie() {
     this.http.put<any>(`/v1/recepies/${this.recepieToEdit?._id}`, this.recepieToEdit).subscribe((res) => {
-      console.log(res);
+      this.router.navigate(['/recepies']);
     })
   }
 
   deleteRecepie() {
     this.http.delete<any>(`/v1/recepies/${this.recepieToEdit?._id}`).subscribe((res) => {
-      console.log(res);
+      this.router.navigate(['/recepies']);
     })
   }
 }

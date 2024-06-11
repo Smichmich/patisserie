@@ -57,11 +57,11 @@ exports.GetRecepieByID = async (req, res, next) => {
 * @public
 */
 exports.deleteRecepie = async (req, res, next) => {
-  logger.log('requested for deleting a recepie');
+  logger.info('requested for deleting a recepie');
   const { ID } = req.params;
   try {
     await Recepie.deleteOne({ _id: ID });
-    logger.log(`deleted recepie with id of ${ID}`);
+    logger.info(`deleted recepie with id of ${ID}`);
     res.status(200).json({ msg: 'succesfully deleted the recepie' });
   } catch (error) {
     logger.error(error);
