@@ -30,7 +30,7 @@ jobs:
         run: |
           cd patisserie-front
           npm install
-          ng build
+          npm run build
           cp ./dist/patisserie-front/browser/* ../patisserie-back/src/public
 
       - name: Zip artifact for deployment
