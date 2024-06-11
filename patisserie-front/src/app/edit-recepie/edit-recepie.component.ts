@@ -19,13 +19,11 @@ export class EditRecepieComponent {
   ingredientAmountToAdd: number = 0;
   ingredientNameToAdd: string = '';
   instructionToAdd: string = '';
-  newRecepieName: string = '';
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['recepieID'];
     this.http.get<Recepie[]>(`/v1/recepies/${id}`).subscribe((res) => {
       this.recepieToEdit = res[0];
-      this.newRecepieName = this.recepieToEdit.name;
     })
   }
 
@@ -53,7 +51,6 @@ export class EditRecepieComponent {
   }
 
   updateRecepie() {
-    this.recepieToEdit!.name = this.newRecepieName;
     this.http.put<any>(`/v1/recepies/${this.recepieToEdit?._id}`, this.recepieToEdit).subscribe((res) => {
       this.router.navigate(['/recepies']);
     })
