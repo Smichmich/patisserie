@@ -32,6 +32,10 @@ exports.connect = () => {
       useFindAndModify: false,
       useMongoClient: true,
     })
-    .then(() => console.log('mongoDB connected...')).catch(console.log);
+    .then(() => {
+      logger.info('Connected to mongoDB');
+    }).catch((error) => {
+      logger.error(`Failed connecting to monoDB with the following error: ${error}`);
+    });
   return mongoose.connection;
 };
