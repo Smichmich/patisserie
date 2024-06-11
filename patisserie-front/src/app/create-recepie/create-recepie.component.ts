@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-recepie',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './create-recepie.component.html',
   styleUrl: './create-recepie.component.css'
 })
 export class CreateRecepieComponent {
 
-constructor(private http: HttpClient) {}
+constructor(private http: HttpClient, private router: Router) {}
 
   recepieName: String = '';
   recepieInstructions: String[] = [];
@@ -43,8 +44,8 @@ constructor(private http: HttpClient) {}
         ingredients: this.recepieIngredients
       }
       this.http.post<any>('/v1/recepies/add', newRecepie).subscribe((res) => {
-        alert('נוצר מתכון בהצלחה');
         this.resetForm();
+        this.router.navigate(['/recepies'])
       })
     }
   }
