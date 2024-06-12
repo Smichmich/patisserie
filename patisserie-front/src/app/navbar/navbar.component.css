@@ -1,0 +1,57 @@
+.hamburger span {
+    display: block;
+    width: 35px;
+    height: 3px;
+    margin: 6px auto;
+    background-color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-6.5px, 6.5px);
+}
+  
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+  
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-6.5px, -6.5px);
+}
+
+.hamburger :hover {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.hamburger {
+    width:min-content;
+}
+
+nav {
+    background: url('../../assets/navbar_logo.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: 100% 100%;
+}
+
+.menu {
+    background-color: #864F4F;
+    color: white;
+}
+
+.menu a {
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.menu .nav-item {
+    padding-bottom: 10px;
+    padding-top: 10px
+}
+
+.menu a:hover {
+    background-color: #ddd;
+    color: black;
+}

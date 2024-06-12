@@ -1,18 +1,14 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">הפטיסרי</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/recepies" [ngClass]="{'active': isActive('/recepies')}">מתכונים</a>
-        </li> 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/createRecepie" [ngClass]="{'active': isActive('/createRecepie')}">יצירת מתכון</a>
-        </li>
-      </ul>
+<nav>
+  <div class="container">
+    <div class="hamburger" (click)="toggleMenu()" [ngClass]="{'active' : hamburgerToggled}">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 </nav>
+<div class="menu" *ngIf="hamburgerToggled">
+  <div *ngFor="let navItem of navItems" class="nav-item">
+    <a routerLink="{{navItem.path}}">{{navItem.display}}</a>
+  </div>
+</div>
