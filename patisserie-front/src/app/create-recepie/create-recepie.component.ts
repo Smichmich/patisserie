@@ -29,15 +29,17 @@ constructor(private http: HttpClient, private router: Router) {}
   }
 
   addIngredient() {
-    this.recepieIngredients.push(
-      {name: this.ingredientNameToAdd, amount: this.ingredientAmountToAdd}
-    );
-    this.ingredientAmountToAdd = 0;
-    this.ingredientNameToAdd = '';
+    if(this.ingredientAmountToAdd !== 0 && this.ingredientNameToAdd !== '') {
+      this.recepieIngredients.push(
+        {name: this.ingredientNameToAdd, amount: this.ingredientAmountToAdd}
+      );
+      this.ingredientAmountToAdd = 0;
+      this.ingredientNameToAdd = '';
+    }
   }
 
   saveRecepie() {
-    if(this.recepieName && this.recepieIngredients && this.recepieInstructions) {
+    if(this.recepieName !== '' && this.recepieIngredients.length !== 0 && this.recepieInstructions.length !== 0) {
       const newRecepie = {
         name: this.recepieName,
         instructions: this.recepieInstructions,
