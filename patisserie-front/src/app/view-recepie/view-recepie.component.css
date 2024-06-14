@@ -1,0 +1,30 @@
+#multiply-button {
+    border-radius: 50%;
+    background: #864F4F;
+    color: white;
+    margin-right: 50px;
+}
+
+#factor-input-container {
+    background: #864F4F;
+    border-radius: 10px;
+    color: white;
+}
+
+#factor-input {
+    width: 20px;
+}
+
+#edit-icon {
+    height: 50px;
+    width: 50px;
+    margin-right: 100px;
+    float: left;
+}
+
+#reset-button {
+    float: left;
+    background-color: #F6DDC5;
+    color: #864F4F;
+    border-radius: 10px;
+}

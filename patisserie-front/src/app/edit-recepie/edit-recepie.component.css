@@ -1,0 +1,33 @@
+#recepie-name-input {
+    font-size: x-large;
+}
+
+input {
+    background-color: #F6DDC5;
+    border-radius: 10px;
+    color: #864F4F;
+    border: #F6DDC5;
+}
+
+#ingredient-amount-input {
+    width: 50px;
+}
+
+.add-button {
+    background-color: #864F4F;
+    border-radius: 10px;
+    color: #F6DDC5;
+    border: #864F4F;
+}
+
+.icon {
+    width: 20px;
+    height: 20px
+}
+
+#instructions-input {
+    background-color: #F6DDC5;
+    border-radius: 10px;
+    color: #864F4F;
+    border: #F6DDC5;
+}

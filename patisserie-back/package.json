@@ -9,8 +9,8 @@
     "node": ">=8"
   },
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": "NODE_ENV=production node ./src/index.js",
+    "dev": "SET NODE_ENV=development&& nodemon ./src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
     "test:watch": "cross-env NODE_ENV=test mocha --watch src/api/tests/unit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -59,6 +59,7 @@
     "compression": "^1.6.2",
     "cors": "^2.8.3",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "dotenv-safe": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.15.2",

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Recepie } from '../../models/recepie.model';
 import { FormsModule } from '@angular/forms';
+import { RecepiesServiceService } from '../recepies-service.service';
+
 @Component({
   selector: 'app-view-recepie',
   standalone: true,
@@ -16,11 +17,12 @@ export class ViewRecepieComponent {
   recepie: Recepie | null = null;
   recepieBackup: Recepie | null = null;
   factor: number = 1;
-  constructor(private activeRoute: ActivatedRoute, private http: HttpClient) {}
+
+  constructor(private activeRoute: ActivatedRoute, private recepieService: RecepiesServiceService) {}
 
   ngOnInit() {
     const recepieID = this.activeRoute.snapshot.params['recepieID'];
-    this.http.get<any>(`/v1/recepies/${recepieID}`).subscribe(res => {
+    this.recepieService.getRecepieByID(recepieID).subscribe(res => {
        this.recepie = res[0];
        this.recepieBackup = JSON.parse(JSON.stringify(this.recepie))
     })
@@ -30,6 +32,7 @@ export class ViewRecepieComponent {
     this.recepie?.ingredients.forEach(ingredient => {
       ingredient.amount = ingredient.amount * this.factor
     });
+    this.factor=1
   }
 
   resetRecepie() {

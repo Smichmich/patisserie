@@ -1,73 +1,35 @@
-<p *ngIf="!recepieToEdit">טוען מתכון</p>
-<div *ngIf="recepieToEdit" class="mx-5">
-    <div class="row">
-        <div class="col-sm-6">
-            <input type="text" [(ngModel)]="recepieToEdit.name">
+<h1 *ngIf="!recepieToEdit">טוען מתכון</h1>
+<div *ngIf="recepieToEdit">
+    <input type="text" id="recepie-name-input" [(ngModel)]="recepieToEdit.name">
+    <h3>מרכיבים:</h3>
+    <div id="ingredients-form">
+        <input type="number" min="0" id="ingredient-amount-input" [(ngModel)]="ingredientAmountToAdd">
+        גרם
+        <input type="text" id="ingredient-name-input" [(ngModel)]="ingredientNameToAdd">
+        <button class="add-button" (click)="addIngredient()">הוסף</button>
+    </div>
+    <div id="ingredients-list">
+        <div class="ingredient" *ngFor="let ingredient of recepieToEdit.ingredients; index as i">
+            <svg class="icon" (click)="removeIngredient(i)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+            </svg>
+            {{ingredient.amount}} גרם {{ingredient.name}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <label class="form-label">מרכיבים</label>
-            <div class="row">
-                <div class="col-4">
-                    <input type="number" class="form-control" name="ingredientAmountToAdd" [(ngModel)]="ingredientAmountToAdd">
-                </div>
-                <p class="col-1">גרם</p>
-                <div class="col-5">
-                    <input type="text" class="form-control" name="ingredientNameToAdd" [(ngModel)]="ingredientNameToAdd">
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-success btn-sm" (click)="addIngredient()">הוסף</button>
-                </div>
-            </div>
-            <ul>
-                <li class="row my-1" *ngFor="let ingredient of recepieToEdit.ingredients; index as i">
-                    <div class="col-8">
-                        {{ingredient.amount}} גרם {{ingredient.name}}
-                    </div>
-                    <div class="col-4">
-                        <button class="btn btn-sm btn-danger" (click)="removeIngredient(i)">הסר</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-6">
-            <div class="row">
-                <label class="form-label">הוראות</label>
-                <div class="col-10">
-                    <textarea type="text" class="form-control" name="instructionToAdd" [(ngModel)]="instructionToAdd"></textarea>
-                </div>
-                <div class="col-2">
-                    <button class="btn btn-sm btn-success" (click)="addInstruction()">הוסף</button>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <ul>
-                            <li *ngFor="let instruction of recepieToEdit.instructions; index as i">
-                                <div class="col-10">
-                                    <p class="text-break">
-                                        {{instruction}}
-                                    </p>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-sm btn-danger" (click)="removeInstruction(i)">הסר</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <h2>הוראות הכנה:</h2>
+    <div id="instructions-form">
+        <textarea id="instructions-input" [(ngModel)]="instructionToAdd"></textarea>
+        <button class="add-button" (click)="addInstruction()">הוסף</button>
+    </div>
+    <div id="instructions-list">
+        <div class="instruction" *ngFor="let instruction of recepieToEdit.instructions; index as i">
+            <svg class="icon inline" (click)="removeInstruction(i)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+            </svg>
+            {{instruction}}
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6">
-        <button class="btn btn-success" (click)="updateRecepie()">שמור מתכון</button>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-6">
-        <button class="btn btn-danger" (click)="deleteRecepie()">מחק מתכון</button>
-    </div>
-</div>
+<footer>
+    <button class="add-button" (click)="updateRecepie()">שמור מתכון></button>
+</footer>

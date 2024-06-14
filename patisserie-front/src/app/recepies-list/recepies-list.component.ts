@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Recepie } from '../../models/recepie.model';
 import { RouterModule } from '@angular/router';
+import { RecepiesServiceService } from '../recepies-service.service';
 
 @Component({
   selector: 'app-recepies-list',
@@ -13,10 +13,10 @@ import { RouterModule } from '@angular/router';
 })
 export class RecepiesListComponent {
   public recepies!: [Recepie];
-  constructor(private HttpClient: HttpClient) {}
+  constructor(private recepiesService: RecepiesServiceService) {}
 
   ngOnInit() {
-    this.HttpClient.get<{recepies: [Recepie]}>(`/v1/recepies`).subscribe((res) => {
+    this.recepiesService.getAllRecepies().subscribe(res => {
       this.recepies = res.recepies;
     })
   }
