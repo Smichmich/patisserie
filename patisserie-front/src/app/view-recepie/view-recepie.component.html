@@ -3,10 +3,8 @@
 </div>
 <div *ngIf="recepie">
     <div>
-        <img src="/assets/edit-icon.png" id="edit-icon">
+        <img routerLink="/recepie/{{recepie._id}}/edit" src="/assets/edit-icon.png" id="edit-icon">
         <h1>מתכון {{recepie.name}}</h1>
-        <a routerLink="/recepie/{{recepie._id}}/edit">
-        </a>
     </div>
     <h3>מרכיבים:</h3>
     <ul>
