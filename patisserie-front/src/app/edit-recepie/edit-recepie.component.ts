@@ -15,9 +15,8 @@ import { RecepiesServiceService } from '../recepies-service.service';
 })
 
 export class EditRecepieComponent {
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router
-    ,private recepieService: RecepiesServiceService
-  ) {  }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router ,private recepieService: RecepiesServiceService) {}
+  
   recepieToEdit: Recepie | null = null;
   ingredientAmountToAdd: number = 0;
   ingredientNameToAdd: string = '';
@@ -60,6 +59,7 @@ export class EditRecepieComponent {
       })
     }
   }
+
   deleteRecepie() {
     if(this.recepieToEdit) {
       this.recepieService.deleteRecepie(this.recepieToEdit._id).subscribe(res => {
