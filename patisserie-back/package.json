@@ -1,27 +1,20 @@
 {
-  "name": "express-rest-es2017-boilerplate",
+  "name": "patisserie-app",
   "version": "1.2.2",
-  "description": "Express boilerplate for building RESTful APIs",
-  "author": "Daniel Sousa <sousa.dfs@gmail.com>",
+  "description": "Application for rehovot patisserie",
+  "author": "Michael Alimi (michael.alimi2@gmail.com)",
   "main": "src/index.js",
   "private": false,
-  "license": "MIT",
   "engines": {
-    "node": ">=8",
-    "yarn": "*"
+    "node": ">=8"
   },
   "scripts": {
-    "precommit": "yarn lint",
-    "prestart": "yarn docs",
-    "start": "cross-env NODE_ENV=production pm2 start ./src/index.js",
+    "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:fix": "yarn lint --fix",
-    "lint:watch": "yarn lint --watch",
     "test:watch": "cross-env NODE_ENV=test mocha --watch src/api/tests/unit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
-    "validate": "yarn lint && yarn test",
     "postpublish": "git push --tags",
     "deploy": "sh ./deploy.sh",
     "docs": "apidoc -i src -o docs",
@@ -87,8 +80,7 @@
     "pm2": "^5.1.0",
     "pug": "^3.0.1",
     "uuid": "^3.1.0",
-    "winston": "^3.1.0",
-    "yarn": "^1.22.22"
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "apidoc": "^0.28.1",
