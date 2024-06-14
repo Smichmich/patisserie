@@ -7,21 +7,15 @@
   "private": false,
   "license": "MIT",
   "engines": {
-    "node": ">=8",
-    "yarn": "*"
+    "node": ">=8"
   },
   "scripts": {
-    "precommit": "yarn lint",
-    "prestart": "yarn docs",
-    "start": "cross-env NODE_ENV=production pm2 start ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": "NODE_ENV=production node ./src/index.js",
+    "dev": "SET NODE_ENV=development&& nodemon ./src/index.js",
     "lint": "eslint ./src/ --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:fix": "yarn lint --fix",
-    "lint:watch": "yarn lint --watch",
     "test:watch": "cross-env NODE_ENV=test mocha --watch src/api/tests/unit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
-    "validate": "yarn lint && yarn test",
     "postpublish": "git push --tags",
     "deploy": "sh ./deploy.sh",
     "docs": "apidoc -i src -o docs",
@@ -66,6 +60,7 @@
     "compression": "^1.6.2",
     "cors": "^2.8.3",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
     "dotenv-safe": "^8.2.0",
     "email-templates": "^6.0.3",
     "express": "^4.15.2",
@@ -87,8 +82,7 @@
     "pm2": "^5.1.0",
     "pug": "^3.0.1",
     "uuid": "^3.1.0",
-    "winston": "^3.1.0",
-    "yarn": "^1.22.22"
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "apidoc": "^0.28.1",

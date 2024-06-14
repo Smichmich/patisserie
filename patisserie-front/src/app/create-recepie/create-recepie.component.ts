@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import { RecepiesServiceService } from '../recepies-service.service';
 
 @Component({
   selector: 'app-create-recepie',
@@ -13,15 +14,15 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class CreateRecepieComponent {
 
-constructor(private http: HttpClient, private router: Router) {}
+constructor(private router: Router, private recepieService: RecepiesServiceService) {}
 
-  recepieName: String = '';
-  recepieInstructions: String[] = [];
+  recepieName: string = '';
+  recepieInstructions: string[] = [];
   recepieIngredients: any[] = [];
 
-  instructionToAdd: String = '';
-  ingredientNameToAdd: String = '';
-  ingredientAmountToAdd: Number = 0;
+  instructionToAdd: string = '';
+  ingredientNameToAdd: string = '';
+  ingredientAmountToAdd: number = 0;
 
   addInstruction() {
     this.recepieInstructions.push(this.instructionToAdd);
@@ -45,7 +46,7 @@ constructor(private http: HttpClient, private router: Router) {}
         instructions: this.recepieInstructions,
         ingredients: this.recepieIngredients
       }
-      this.http.post<any>('/v1/recepies/add', newRecepie).subscribe((res) => {
+      this.recepieService.saveRecepie(newRecepie).subscribe(() => {
         this.resetForm();
         this.router.navigate(['/recepies'])
       })

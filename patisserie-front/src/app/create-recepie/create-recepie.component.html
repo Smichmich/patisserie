@@ -1,10 +1,10 @@
 <div>
     <h1 class="inline">שם המתכון:</h1>
-    <input type="text" class="inline" id="recepie-name-input">
+    <input type="text" class="inline" id="recepie-name-input" [(ngModel)]="recepieName">
 </div>
 <h2>מרכיבים:</h2>
 <div id="ingredients-form">
-    <input type="number" id="ingredient-amount-input" class="inline" [(ngModel)]="ingredientAmountToAdd">
+    <input type="number" min="0" id="ingredient-amount-input" class="inline" [(ngModel)]="ingredientAmountToAdd">
     גרם
     <input type="text" class="inline" id="ingredient-name-input" [(ngModel)]="ingredientNameToAdd">
     <button class="add-button" (click)="addIngredient()">הוסף</button>
@@ -30,3 +30,6 @@
         {{instruction}}
     </div>
 </div>
+<footer>
+    <button class="add-button" (click)="saveRecepie()">שמור מתכון></button>
+</footer>

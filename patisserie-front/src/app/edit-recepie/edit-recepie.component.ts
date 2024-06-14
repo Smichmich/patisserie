@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Recepie } from '../../models/recepie.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RecepiesServiceService } from '../recepies-service.service';
 
 @Component({
   selector: 'app-edit-recepie',
@@ -14,7 +15,9 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class EditRecepieComponent {
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router) {  }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router
+    ,private recepieService: RecepiesServiceService
+  ) {  }
   recepieToEdit: Recepie | null = null;
   ingredientAmountToAdd: number = 0;
   ingredientNameToAdd: string = '';
@@ -22,7 +25,7 @@ export class EditRecepieComponent {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['recepieID'];
-    this.http.get<Recepie[]>(`/v1/recepies/${id}`).subscribe((res) => {
+    this.recepieService.getRecepieByID(id).subscribe((res) => {
       this.recepieToEdit = res[0];
     })
   }
@@ -51,14 +54,17 @@ export class EditRecepieComponent {
   }
 
   updateRecepie() {
-    this.http.put<any>(`/v1/recepies/${this.recepieToEdit?._id}`, this.recepieToEdit).subscribe((res) => {
-      this.router.navigate(['/recepies']);
-    })
+    if(this.recepieToEdit) {
+      this.recepieService.updateRecepie(this.recepieToEdit).subscribe((res) => {
+        this.router.navigate(['/recepies'])
+      })
+    }
   }
-
   deleteRecepie() {
-    this.http.delete<any>(`/v1/recepies/${this.recepieToEdit?._id}`).subscribe((res) => {
-      this.router.navigate(['/recepies']);
-    })
+    if(this.recepieToEdit) {
+      this.recepieService.deleteRecepie(this.recepieToEdit._id).subscribe(res => {
+        this.router.navigate(['/recepies']);
+      })
+    }
   }
 }
